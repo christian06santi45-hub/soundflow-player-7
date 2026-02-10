@@ -1,2 +1,24 @@
-ãU7QE7/Y75VM5/U75D/I7SäSLQ7Q7I57Q?I;åR3=75WE75æHK57çP7SKWQ37SB7_èJQR?I;E7UKIéL?I;75D/I7SêKKE752/3=7ëMQKUKU_M7ìP73KY7Q/1E76QQKQSíI57QD/I7Sî	T/Q;7UT?G7ïR3=75WE7>I>GG75?/U7T/SCğF?3QKU/SCñT/SCòC?MM75D/I7Só
-WSM7I575ô_I3õSö
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import MusicPlayer from "./pages/MusicPlayer";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+
+export default function App() {
+  return (
+    <>
+      <Nav />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/musicplayer" element={<MusicPlayer />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </>
+  );
+}
