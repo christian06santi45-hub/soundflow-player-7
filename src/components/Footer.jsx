@@ -18,7 +18,7 @@ const Footer = () => {
               <FontAwesomeIcon icon="music" />
             </Link>
           </div>
-          <div className="footer__copyright">Copyright © 2026 Library</div>
+          <div className="footer__copyright">Copyright © 2026 Soundflow Player</div>
         </div>
       </div>
     </footer>
