@@ -1,4 +1,3 @@
-import react from "react";
 import Landing from "../components/Landing"
 import Pricing from "../components/Pricing";
 import Featured from "../components/Featured";

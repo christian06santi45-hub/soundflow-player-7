@@ -13,6 +13,7 @@ export default function Featured() {
 
   useEffect(() => {
     let ignore = false;
+    const audio = audioRef.current;
 
     async function load() {
       setLoading(true);
@@ -31,8 +32,8 @@ export default function Featured() {
 
     return () => {
       ignore = true;
-      audioRef.current.pause();
-      audioRef.current.src = "";
+      audio.pause();
+      audio.src = "";
     };
   }, []);
 
