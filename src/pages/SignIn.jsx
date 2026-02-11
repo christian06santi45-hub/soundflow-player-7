@@ -1,9 +1,33 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { auth } from "../firebase/inti";
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.currentTarget);
+    const email = String(formData.get("email") || "").trim();
+    const password = String(formData.get("password") || "");
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/musicplayer");
+    } catch (signinError) {
+      setError(signinError?.message || "Unable to sign in right now.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <>
@@ -11,7 +35,7 @@ export default function SignIn() {
         <div className="signin__container">
           <h1 className="signin__title">Welcome Back</h1>
 
-          <form className="signin__form">
+          <form className="signin__form" onSubmit={handleSubmit}>
             <label className="signin__field">
               <span>Email Address</span>
               <input type="email" name="email" placeholder="name@email.com" required />
@@ -36,8 +60,14 @@ export default function SignIn() {
               </div>
             </label>
 
-            <button type="submit" className="btn signin__submit">
-              Sign In
+            {error && <p className="authMessage authMessage--error">{error}</p>}
+
+            <button
+              type="submit"
+              className="btn signin__submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Signing in..." : "Sign In"}
             </button>
           </form>
 

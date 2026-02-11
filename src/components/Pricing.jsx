@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Pricing() {
+  const navigate = useNavigate();
   const plans = [
     {
       tag: "$0 for 1 month",
@@ -85,7 +87,10 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <button className={`planCard__btn ${p.buttonClass}`}>
+              <button
+                className={`planCard__btn ${p.buttonClass}`}
+                onClick={() => navigate("/signup")}
+              >
                 {p.buttonText}
               </button>
 

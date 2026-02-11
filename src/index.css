@@ -559,6 +559,18 @@ nav {
   color: var(--accent-2);
 }
 
+.authMessage {
+  border-radius: 10px;
+  font-size: 0.95rem;
+  padding: 8px 10px;
+}
+
+.authMessage--error {
+  background: rgba(255, 107, 107, 0.14);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  color: #ff9c9c;
+}
+
 .signup__form {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -566,6 +578,12 @@ nav {
 .signup__field--full,
 .signup__submit {
   grid-column: 1 / -1;
+}
+
+.signin__submit:disabled,
+.signup__submit:disabled {
+  cursor: wait;
+  opacity: 0.8;
 }
 
 footer {
